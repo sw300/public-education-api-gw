@@ -1,0 +1,45 @@
+server:
+  port: 8080
+
+eureka:
+  client:
+    enabled: false
+
+endpoints:
+  routes:
+    sensitive: false
+
+management:
+  security:
+    enabled: false
+
+security:
+  basic:
+    enabled: false
+
+zuul:
+  ignored-headers: Access-Control-Allow-Credentials, Access-Control-Allow-Origin
+  addProxyHeaders: true
+
+  # Decides to check the token.
+  iam-authentication: true
+
+  # Key to determine if the token's signature is correct.
+  # It must be the same key that IAM used to issue the token.
+  # Copy and paste from your IAM's iam.jwt.key
+  iam-jwt-key: my-jwt-encrypt-key-my-jwt-encrypt-key
+
+  routes:
+
+    dashboards:
+      path: /dashboards/**
+      url: http://localhost:8089
+      stripPrefix: false
+    mailLogs:
+      path: /mailLogs/**
+      url: http://localhost:8087
+      stripPrefix: false
+    all:
+      path: /**
+      url: http://localhost:8086
+      stripPrefix: false
