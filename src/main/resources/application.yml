@@ -33,7 +33,7 @@ zuul:
 
     dashboards:
       path: /dashboards/**
-      url: http://localhost:8089
+      url: http://localhost:8088
       stripPrefix: false
     mailLogs:
       path: /mailLogs/**
